@@ -1,0 +1,42 @@
+<html>
+	<head><title>Dreiecksberechnung</title></head>
+	<body>
+		<script>
+function findNewSizes(a, b, dist) {
+	var a2 = a + dist;
+	var b2 = b * a2 / a;
+	var b3 = b2 + dist;
+	var a3 = a2 * b3 / b2;
+
+	var c3 = Math.sqrt(a3 * a3 + b3 * b3);
+	var h3 = a3 * b3 / c3;
+	var h4 = h3 + dist;
+	var a4 = a3 * h4 / h3;
+	var b4 = b3 * h4 / h3;
+	return [a4, b4];
+}
+
+function updateResult() {
+	var a = parseFloat(document.getElementById("a").value);
+	var b = parseFloat(document.getElementById("b").value);
+	var dist = parseFloat(document.getElementById("dist").value);
+
+	var res = findNewSizes(a, b, dist);
+
+	document.getElementById("new_a").innerHTML = res[0];
+	document.getElementById("new_b").innerHTML = res[1];
+}
+		</script>
+		<h2>Eingabe</h2>
+		Seite a: <input type="text" name="a" id="a"><br>
+		Seite b: <input type="text" name="b" id="b"><br>
+		Rand: <input type="text" name="Rand" id="dist"><br>
+		<button onclick="updateResult()">Berechne Resultat</button>
+
+		<br>
+
+		<h2>Resultat</h2>
+		Neue Seite a: <div id="new_a"></div>
+		Neue Seite b: <div id="new_b"></div>
+	</body>
+</html>
